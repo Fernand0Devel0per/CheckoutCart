@@ -1,5 +1,7 @@
 using CheckoutCart.BBL;
 using CheckoutCart.BBL.Interface;
+using CheckoutCart.BLL;
+using CheckoutCart.BLL.Interface;
 using CheckoutCart.DAL;
 using CheckoutCart.DAL.Interface;
 using CheckoutCart.Domain;
@@ -17,8 +19,10 @@ builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
 builder.Services.AddScoped<IUserDao, UserDao>();
 builder.Services.AddScoped<IRoleDao, RoleDao>();
+builder.Services.AddScoped<IStatusDao, StatusDao>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IJwtAuthManager, JwtAuthManager>();
 

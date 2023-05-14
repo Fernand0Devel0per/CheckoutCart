@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CheckoutCart.Domain;
+using CheckoutCart.Dtos.Status;
 using CheckoutCart.Dtos.User;
 
 namespace CheckoutCart.Helpers.AutoMapper
@@ -17,6 +18,8 @@ namespace CheckoutCart.Helpers.AutoMapper
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username))
             .ForMember(dest => dest.Role, opt => opt.Ignore());
+
+            CreateMap<Status, StatusResponse>();
 
         }
     }
