@@ -6,35 +6,35 @@ using System.Data.SqlClient;
 
 namespace CheckoutCart.DAL
 {
-    public class StatusDao : IStatusDao
+    public class CategoryDao : ICategoryDao
     {
         private const string ColumnId = "Id";
         private const string ColumnCode = "Code";
-        private const string ColumnDescription = "Description";
+        private const string ColumnName = "Name";
 
         private readonly string _connectionString;
-        public StatusDao(IConfiguration configuration)
+        public CategoryDao(IConfiguration configuration)
         {
             _connectionString = configuration.GetDefaultConnectionString();
         }
 
-        public async Task<Status> FindByCodeAsync(StatusCode code)
+        public async Task<Category> FindByCodeAsync(CategoryCode code)
         {
             using var connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
 
             using var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM Statuses WHERE Code = @code";
+            command.CommandText = "SELECT * FROM Categories WHERE Code = @code";
             command.Parameters.AddWithValue("@code", code);
 
             using var reader = await command.ExecuteReaderAsync();
             if (await reader.ReadAsync())
             {
-                return new Status
+                return new Category
                 {
                     Id = reader.GetGuid(reader.GetOrdinal(ColumnId)),
                     Code = reader.GetInt32(reader.GetOrdinal(ColumnCode)),
-                    Description = reader.GetString(reader.GetOrdinal(ColumnDescription)),
+                    Name = reader.GetString(reader.GetOrdinal(ColumnName)),
                 };
             }
             else
@@ -43,29 +43,29 @@ namespace CheckoutCart.DAL
             }
         }
 
-        public async Task<IEnumerable<Status>> FindAllAsync()
+        public async Task<IEnumerable<Category>> FindAllAsync()
         {
             using var connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
 
             using var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM Statuses";
+            command.CommandText = "SELECT * FROM Categories";
 
-            var statuses = new List<Status>();
+            var categories = new List<Category>();
 
             using var reader = await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
-                var status = new Status
+                var status = new Category
                 {
                     Id = reader.GetGuid(reader.GetOrdinal(ColumnId)),
                     Code = reader.GetInt32(reader.GetOrdinal(ColumnCode)),
-                    Description = reader.GetString(reader.GetOrdinal(ColumnDescription))
+                    Name = reader.GetString(reader.GetOrdinal(ColumnName))
                 };
 
-                statuses.Add(status);
+                categories.Add(status);
             }
-            return statuses;
+            return categories;
         }
     }
 }

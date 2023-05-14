@@ -20,7 +20,6 @@ namespace CheckoutCart.BLL
         {
             var allStatus = await _statusDao.FindAllAsync();
             return _mapper.Map<IEnumerable<StatusResponse>>(allStatus);
-  
         }
     }
 }

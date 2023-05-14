@@ -1,6 +1,6 @@
 ﻿namespace CheckoutCart.Helpers.Enums
 {
-    public enum StatusEnum
+    public enum StatusCode
     {
         Open = 1,
         Completed = 2,

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CheckoutCart.Domain;
+using CheckoutCart.Dtos.Category;
 using CheckoutCart.Dtos.Status;
 using CheckoutCart.Dtos.User;
 
@@ -20,6 +21,8 @@ namespace CheckoutCart.Helpers.AutoMapper
             .ForMember(dest => dest.Role, opt => opt.Ignore());
 
             CreateMap<Status, StatusResponse>();
+
+            CreateMap<Category, CategoryResponse>();
 
         }
     }

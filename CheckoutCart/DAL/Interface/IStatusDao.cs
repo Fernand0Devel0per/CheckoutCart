@@ -5,7 +5,7 @@ namespace CheckoutCart.DAL.Interface
 {
     public interface IStatusDao
     {
-        Task<Status> FindByCodeAsync(StatusEnum code);
+        Task<Status> FindByCodeAsync(StatusCode code);
         Task<IEnumerable<Status>> FindAllAsync();
     }
 }
