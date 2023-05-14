@@ -21,6 +21,7 @@ builder.Services.AddScoped<IUserDao, UserDao>();
 builder.Services.AddScoped<IRoleDao, RoleDao>();
 builder.Services.AddScoped<IStatusDao, StatusDao>();
 builder.Services.AddScoped<ICategoryDao, CategoryDao>();
+builder.Services.AddScoped<IProductDao, ProductDao>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
