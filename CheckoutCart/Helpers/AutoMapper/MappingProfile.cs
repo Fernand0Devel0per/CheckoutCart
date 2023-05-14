@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CheckoutCart.Domain;
 using CheckoutCart.Dtos.Category;
+using CheckoutCart.Dtos.Product;
 using CheckoutCart.Dtos.Status;
 using CheckoutCart.Dtos.User;
 
@@ -23,6 +24,17 @@ namespace CheckoutCart.Helpers.AutoMapper
             CreateMap<Status, StatusResponse>();
 
             CreateMap<Category, CategoryResponse>();
+
+            CreateMap<ProductCreateRequest, Product>()
+                .ForMember(dest => dest.CategoryId, opt => opt.Ignore())
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            CreateMap<Product, ProductCreateResponse>()
+                .ForMember(dest => dest.Category, opt => opt.Ignore());
+
+            CreateMap<Product, ProductResponse>()
+                .ForMember(dest => dest.Category, opt => opt.Ignore());
+            
 
         }
     }

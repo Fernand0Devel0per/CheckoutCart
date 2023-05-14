@@ -18,6 +18,31 @@ namespace CheckoutCart.DAL
             _connectionString = configuration.GetDefaultConnectionString();
         }
 
+        public async Task<Category> FindByIdAsync(Guid id)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM Categories WHERE Id = @id";
+            command.Parameters.AddWithValue("@id", id);
+
+            using var reader = await command.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
+            {
+                return new Category
+                {
+                    Id = reader.GetGuid(reader.GetOrdinal(ColumnId)),
+                    Code = reader.GetInt32(reader.GetOrdinal(ColumnCode)),
+                    Name = reader.GetString(reader.GetOrdinal(ColumnName)),
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public async Task<Category> FindByCodeAsync(CategoryCode code)
         {
             using var connection = new SqlConnection(_connectionString);
