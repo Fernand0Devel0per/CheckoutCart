@@ -159,7 +159,7 @@ namespace CheckoutCart.DAL
             return result;
         }
 
-        public async Task<PagedResult<Product>> GetProductsByCategoryAsync(int categoryId, int page = 1, int pageSize = 10, bool onlyActive = false)
+        public async Task<PagedResult<Product>> GetProductsByCategoryAsync(Guid categoryId, int page = 1, int pageSize = 10, bool onlyActive = false)
         {
 
             ValidatePageSize(pageSize);

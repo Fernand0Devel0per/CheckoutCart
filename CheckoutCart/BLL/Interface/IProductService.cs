@@ -7,7 +7,7 @@ namespace CheckoutCart.BLL.Interface
     public interface IProductService
     {
         Task<ProductCreateResponse> CreateProductAsync(ProductCreateRequest productRequest);
-        Task<bool> UpdateProductAsync(ProductUpdateRequest productRequest);
+        Task<bool> UpdateProductAsync(Guid id, ProductUpdateRequest productRequest);
         Task<bool> DeleteProductAsync(Guid id);
         Task<bool> ToggleProductActiveStatusAsync(bool isActive, Guid id);
         Task<ProductResponse> GetProductByIdAsync(Guid id);

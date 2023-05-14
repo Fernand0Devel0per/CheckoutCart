@@ -28,7 +28,7 @@ namespace CheckoutCart.BLL
             var category = await _categoryDao.FindByCodeAsync(productRequest.Category);
             if (category is null)
             {
-                throw new ArgumentException($"Category with code {productRequest.Category} not found. Product creation failed as valid category is required."
+                throw new ArgumentException($"Category with code {productRequest.Category} not found. Product creation failed as valid category is required.");
             }
 
             var newProduct = _mapper.Map<Product>(productRequest);
@@ -38,19 +38,20 @@ namespace CheckoutCart.BLL
             return productResponse;
         }
 
-        public async Task<bool> UpdateProductAsync(ProductUpdateRequest productRequest)
+        public async Task<bool> UpdateProductAsync(Guid id, ProductUpdateRequest productRequest)
         {
-            var product = await _productDao.GetProductByIdAsync(productRequest.Id);
+            var product = await _productDao.GetProductByIdAsync(id);
             if (product is null)
             {
-                throw new ProductNotFoundException($"Product with Id {productRequest.Id} could not be found when attempting to update.");
+                throw new ProductNotFoundException($"Product with Id {id} could not be found when attempting to update.");
             }
             var category = await _categoryDao.FindByCodeAsync(productRequest.Category);
             if (category is null)
             {
                 throw new ArgumentException($"Category with code {productRequest.Category} not found. Update failed as category is required for product.");
             }
-
+            product = _mapper.Map<Product>(productRequest);
+            product.Id = id;
             product.CategoryId = category.Id;
 
             return await _productDao.UpdateAsync(product);
@@ -109,7 +110,7 @@ namespace CheckoutCart.BLL
                 throw new ArgumentException($"Category with code {categoryCode} not found. Update failed as category is required for product.");
             }
 
-            var pagedProducts = await _productDao.GetProductsAsync(page, pageSize, onlyActive);
+            var pagedProducts = await _productDao.GetProductsByCategoryAsync(category.Id, page, pageSize, onlyActive);
             var pagedProductResponses = new PagedResult<ProductResponse>
             {
                 TotalItems = pagedProducts.TotalItems,
