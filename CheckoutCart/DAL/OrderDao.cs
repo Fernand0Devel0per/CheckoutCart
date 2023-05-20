@@ -2,6 +2,7 @@
 using CheckoutCart.Domain;
 using CheckoutCart.Dtos.Common;
 using CheckoutCart.Helpers.Data;
+using CheckoutCart.Helpers.Enums;
 using System.Data.SqlClient;
 
 namespace CheckoutCart.DAL
@@ -32,14 +33,15 @@ namespace CheckoutCart.DAL
             command.Parameters.AddWithValue("@orderDate", DateTime.UtcNow);
             command.Parameters.AddWithValue("@userId", order.UserId);
             command.Parameters.AddWithValue("@statusId", order.StatusId);
-
+            
+            order.OrderDate = DateTime.UtcNow;
             order.Id = (Guid)await command.ExecuteScalarAsync();
 
             return order;
         }
 
 
-        public async Task UpdateStatusAsync(Guid id, Guid statusId)
+        public async Task<bool> UpdateStatusAsync(Guid id, Guid statusId)
         {
             using var connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
@@ -49,7 +51,7 @@ namespace CheckoutCart.DAL
             command.Parameters.AddWithValue("@statusId", statusId);
             command.Parameters.AddWithValue("@id", id);
 
-            await command.ExecuteNonQueryAsync();
+            return await command.ExecuteNonQueryAsync() > 0;
         }
 
         public async Task<Order> GetOrderByIdAsync(Guid id)
@@ -75,7 +77,26 @@ namespace CheckoutCart.DAL
 
             return null;
         }
-    
+
+        public async Task<bool> DoesUserHaveOpenOrderAsync(Guid userId)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = @$"
+                SELECT COUNT(*) FROM ORDERS 
+                INNER JOIN STATUS ON ORDERS.StatusId = STATUS.Id 
+                WHERE ORDERS.UserId = @userId AND STATUS.Code = @statusCode";
+
+            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.AddWithValue("@statusCode", (int)StatusCode.Open);
+
+            var count = (int)await command.ExecuteScalarAsync();
+
+            return count > 0;
+        }
+
         public async Task<PagedResult<Order>> GetOrdersByUserAsync(Guid userId, int page = 1, int pageSize = 10)
         {
             ValidatePageSize(pageSize);

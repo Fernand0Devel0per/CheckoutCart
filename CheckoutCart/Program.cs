@@ -21,12 +21,15 @@ builder.Services.AddScoped<IUserDao, UserDao>();
 builder.Services.AddScoped<IRoleDao, RoleDao>();
 builder.Services.AddScoped<IStatusDao, StatusDao>();
 builder.Services.AddScoped<ICategoryDao, CategoryDao>();
+builder.Services.AddScoped<IOrderDao, OrderDao>();
 builder.Services.AddScoped<IProductDao, ProductDao>();
+builder.Services.AddScoped<IProductOrderDao, ProductOrderDao>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IJwtAuthManager, JwtAuthManager>();
 

@@ -67,5 +67,30 @@ namespace CheckoutCart.DAL
             }
             return statuses;
         }
+
+        public async Task<Status> GetByIdAsync(Guid id)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM Statuses WHERE Id = @id";
+            command.Parameters.AddWithValue("@id", id);
+
+            using var reader = await command.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
+            {
+                return new Status
+                {
+                    Id = reader.GetGuid(reader.GetOrdinal(ColumnId)),
+                    Code = reader.GetInt32(reader.GetOrdinal(ColumnCode)),
+                    Description = reader.GetString(reader.GetOrdinal(ColumnDescription)),
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CheckoutCart.Domain;
 using CheckoutCart.Dtos.Category;
+using CheckoutCart.Dtos.Order;
 using CheckoutCart.Dtos.Product;
 using CheckoutCart.Dtos.Status;
 using CheckoutCart.Dtos.User;
@@ -34,7 +35,15 @@ namespace CheckoutCart.Helpers.AutoMapper
 
             CreateMap<Product, ProductResponse>()
                 .ForMember(dest => dest.Category, opt => opt.Ignore());
-            
+
+            CreateMap<Order, OrderCreateResponse>()
+                .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.OrderDate.ToString("dd/MM/yyyy")))
+                .ForMember(dest => dest.Status, opt => opt.Ignore());
+
+            CreateMap<Order, OrderSearchResponse>()
+                .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.OrderDate.ToString("dd/MM/yyyy")))
+                .ForMember(dest => dest.Status, opt => opt.Ignore());
+
 
         }
     }

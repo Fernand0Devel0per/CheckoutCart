@@ -7,5 +7,6 @@ namespace CheckoutCart.DAL.Interface
     {
         Task<Status> FindByCodeAsync(StatusCode code);
         Task<IEnumerable<Status>> FindAllAsync();
+        Task<Status> GetByIdAsync(Guid id);
     }
 }
