@@ -5,6 +5,7 @@ using CheckoutCart.DAL.Interface;
 using CheckoutCart.Domain;
 using CheckoutCart.Dtos.Common;
 using CheckoutCart.Dtos.Order;
+using CheckoutCart.Dtos.Product;
 using CheckoutCart.Helpers.Enums;
 using CheckoutCart.Helpers.Exceptions;
 
@@ -14,16 +15,20 @@ namespace CheckoutCart.BLL
     {
         private readonly IOrderDao _orderDao;
         private readonly IUserDao _userDao;
+        private readonly IProductDao _productDao;
+        private readonly IProductOrderDao _productOrderDao;
         private readonly IStatusDao _statusDao;
         private readonly IMapper _mapper;
 
 
-        public OrderService(IConfiguration configuration, IUserDao userDao, IStatusDao statusDao, IMapper mapper)
+        public OrderService(IConfiguration configuration, IUserDao userDao, IStatusDao statusDao, IMapper mapper, IOrderDao orderDao, IProductOrderDao productOrderDao, IProductDao productDao)
         {
-            _orderDao = new OrderDao(configuration);
             _userDao = userDao;
             _statusDao = statusDao;
             _mapper = mapper;
+            _orderDao = orderDao;
+            _productOrderDao = productOrderDao;
+            _productDao = productDao;
         }
 
         public async Task<OrderCreateResponse> CreateAsync(Guid userId)
@@ -101,14 +106,44 @@ namespace CheckoutCart.BLL
             return response;
         }
 
-        public Task<Order> GetOrderByIdWithProductsAsync(Guid id)
+        public async Task<OrderWithProductResponse> GetOrderByIdWithProductsAsync(Guid id)
         {
-            return _orderDao.GetOrderByIdAsync(id);
+            var order = await _orderDao.GetOrderByIdAsync(id);
+            if (order == null)
+            {
+                throw new OrderNotFoundException($"Order with Id {id} not found");
+            }
+            var itemsOrder = await _productOrderDao.GetAllProductsInOrderAsync(order.Id);
+
+            var itemsOrderResponse = await MappingProductsResponse(itemsOrder);
+
+            var orderResponse = _mapper.Map<OrderWithProductResponse>(order);
+            orderResponse.Items = itemsOrderResponse;
+            return orderResponse;
+
+
+
         }
 
         public Task<PagedResult<Order>> GetOrdersByUserAsync(Guid userId, int page = 1, int pageSize = 10)
         {
             return _orderDao.GetOrdersByUserAsync(userId, page, pageSize);
+        }
+
+        private async Task<IList<ProductOrderItemResponse>> MappingProductsResponse(IEnumerable<ProductOrder> items)
+        {
+            var itemsOrderResponse = new List<ProductOrderItemResponse>();
+            if (items.Count() < 1)
+            {
+                foreach (var item in items)
+                {
+                    var itemResponse = _mapper.Map<ProductOrderItemResponse>(item);
+                    var product = await _productDao.GetProductByIdAsync(item.ProductId);
+                    itemResponse.Name = product.Name;
+                    itemsOrderResponse.Add(itemResponse);
+                }
+            }
+            return itemsOrderResponse;
         }
     }
 }

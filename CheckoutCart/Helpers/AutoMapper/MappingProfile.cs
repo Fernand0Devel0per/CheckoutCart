@@ -36,6 +36,10 @@ namespace CheckoutCart.Helpers.AutoMapper
             CreateMap<Product, ProductResponse>()
                 .ForMember(dest => dest.Category, opt => opt.Ignore());
 
+            CreateMap<ProductOrder, ProductOrderItemResponse>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.ProductId))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.PriceAtOrder));
+            
             CreateMap<Order, OrderCreateResponse>()
                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.OrderDate.ToString("dd/MM/yyyy")))
                 .ForMember(dest => dest.Status, opt => opt.Ignore());
@@ -44,6 +48,8 @@ namespace CheckoutCart.Helpers.AutoMapper
                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.OrderDate.ToString("dd/MM/yyyy")))
                 .ForMember(dest => dest.Status, opt => opt.Ignore());
 
+            CreateMap<Order, OrderWithProductResponse>()
+                .ForMember(dest => dest.OrderId, opt => opt.MapFrom(src => src.Id));
 
         }
     }
