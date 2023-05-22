@@ -89,5 +89,32 @@ namespace CheckoutCart.DAL
             return productOrders;
         }
 
+        public async Task<ProductOrder> GetProductOrderAsync(Guid orderId, Guid productId)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM ProductOrders WHERE OrderId = @OrderId AND ProductId = @ProductId";
+            command.Parameters.AddWithValue("@OrderId", orderId);
+            command.Parameters.AddWithValue("@ProductId", productId);
+
+            using var reader = await command.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
+            {
+                var productOrder = new ProductOrder
+                {
+                    ProductId = reader.GetGuid(reader.GetOrdinal(ColumnProductId)),
+                    OrderId = reader.GetGuid(reader.GetOrdinal(ColumnOrderId)),
+                    Quantity = reader.GetInt32(reader.GetOrdinal(ColumnQuantity)),
+                    PriceAtOrder = reader.GetDecimal(reader.GetOrdinal(ColumnPriceAtOrder))
+                };
+
+                return productOrder;
+            }
+
+            return null;
+        }
+
     }
 }

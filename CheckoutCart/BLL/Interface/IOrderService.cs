@@ -9,7 +9,11 @@ namespace CheckoutCart.BLL.Interface
     {
         Task<OrderCreateResponse> CreateAsync(Guid userId);
         Task<bool> UpdateStatusAsync(Guid id, StatusCode code);
-        Task<OrderSearchResponse> GetOrderByIdAsync(Guid id)
-        Task<PagedResult<Order>> GetOrdersByUserAsync(Guid userId, int page = 1, int pageSize = 10);
+        Task<OrderSearchResponse> GetOrderByIdAsync(Guid id);
+        Task<OrderWithProductResponse> GetOrderByIdWithProductsAsync(Guid id);
+        Task<PagedResult<OrderSearchResponse>> GetOrdersByUserAsync(Guid userId, int page = 1, int pageSize = 10);
+        Task<bool> AddProductToOrderAsync(ProductOrder productOrder);
+        Task<bool> UpdateProductQuantityInOrderAsync(Guid orderId, Guid productId, int newQuantity);
+        Task<bool> RemoveProductFromOrderAsync(Guid orderId, Guid productId);
     }
 }

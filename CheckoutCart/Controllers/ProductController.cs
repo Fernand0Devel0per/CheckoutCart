@@ -56,7 +56,7 @@ namespace CheckoutCart.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, new {Message ="An error occurred while creating the product. Please try again later."});
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while creating the product. Please try again later." });
             }
         }
 
