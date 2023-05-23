@@ -4,20 +4,20 @@ Bem-vindo à TechShop API, uma solução de e-commerce voltada para produtos de 
 
 # 🌟 Funcionalidades
 
-1. Autenticação JWT.
-2. CRUD completo para produtos, pedidos, usuários e categorias de produtos.
-3. Recuperação e atualização de status do pedido.
-4. Atualização de status e quantidade do produto em um pedido.
-5. Documentação através do Swagger.
+    Autenticação JWT.
+    CRUD completo para produtos, pedidos, usuários e categorias de produtos.
+    Recuperação e atualização de status do pedido.
+    Atualização de status e quantidade do produto em um pedido.
+    Documentação através do Swagger.
 
 # 🚀 Começando
 
 Para começar a usar a TechShop API, siga as etapas abaixo:
 
-1. Clone este repositório em sua máquina local.
-2. Configure a string de conexão do SQL Server no arquivo appsettings.json.
-3. Execute o comando dotnet restore para restaurar os pacotes NuGet necessários.
-4. Execute o comando dotnet run para iniciar a aplicação.
+    Clone este repositório em sua máquina local.
+    Configure a string de conexão do SQL Server no arquivo appsettings.json.
+    Execute o comando dotnet restore para restaurar os pacotes NuGet necessários.
+    Execute o comando dotnet run para iniciar a aplicação.
 
 A API estará disponível no endereço [http://localhost:5000](http://localhost:5000/).
 
@@ -25,45 +25,50 @@ A API estará disponível no endereço [http://localhost:5000](http://localhost:
 
 A TechShop API possui uma série de rotas para gerenciar usuários, produtos, pedidos, categorias de produtos e status de pedidos. Algumas das principais rotas incluem:
 
-- Autenticação:
-    - POST /api/auth/login: Realiza o login de um usuário.
-- Categorias de produtos:
-    - GET /api/category: Recupera todas as categorias de produtos.
-- Status de pedidos:
-    - GET /api/status: Recupera todos os status de pedidos.
-- Usuários:
-    - GET /api/users/username/{username}: Recupera um usuário pelo nome de usuário.
-    - POST /api/users: Cria um novo usuário.
-    - PUT /api/users: Atualiza um usuário existente.
-- Produtos:
-    - POST /api/products: Cria um novo produto.
-    - PUT /api/products/{id}: Atualiza um produto existente.
-    - PUT /api/products/{id}/status: Altera o status de um produto.
-    - DELETE /api/products/{id}: Exclui um produto.
-    - GET /api/products/{id}: Recupera um produto pelo ID.
-    - GET /api/products: Recupera todos os produtos.
-    - GET /api/products/category/{categoryCode}: Recupera todos os produtos de uma determinada categoria.
-- Pedidos:
-    - POST /api/order: Cria um novo pedido.
-    - PUT /api/order/{id}: Atualiza o status de um pedido.
-    - GET /api/order/{id}: Recupera um pedido pelo ID.
-    - GET /api/order/{id}/products: Recupera um pedido pelo ID, incluindo seus produtos.
-    - GET /api/order/user/{userId}: Recupera todos os pedidos de um usuário.
-    - POST /api/order/{orderId}/products: Adiciona um produto a um pedido.
-    - PUT /api/order/{orderId}/products/{productId}/quantity/{newQuantity}: Atualiza a quantidade de um produto em um pedido.
-    - DELETE /api/order/{orderId}/products/{productId}: Remove um produto de um pedido.
-    
-    Mais detalhes podem ser encontrados na documentação do Swagger.
+    Autenticação:
+        POST /api/auth/login: Realiza o login de um usuário.
+        
+    Categorias de produtos:
+        GET /api/category: Recupera todas as categorias de produtos.
+
+    Status de pedidos:
+        GET /api/status: Recupera todos os status de pedidos.
+
+    Usuários:
+        GET /api/users/username/{username}: Recupera um usuário pelo nome de usuário.
+        POST /api/users: Cria um novo usuário.
+        PUT /api/users: Atualiza um usuário existente.
+
+    Produtos:
+        POST /api/products: Cria um novo produto.
+        PUT /api/products/{id}: Atualiza um produto existente.
+        PUT /api/products/{id}/status: Altera o status de um produto.
+        DELETE /api/products/{id}: Exclui um produto.
+        GET /api/products/{id}: Recupera um produto pelo ID.
+        GET /api/products: Recupera todos os produtos.
+        GET /api/products/category/{categoryCode}: Recupera todos os produtos de uma determinada categoria.
+
+    Pedidos:
+        POST /api/order: Cria um novo pedido.
+        PUT /api/order/{id}: Atualiza o status de um pedido.
+        GET /api/order/{id}: Recupera um pedido pelo ID.
+        GET /api/order/{id}/products: Recupera um pedido pelo ID, incluindo seus produtos.
+        GET /api/order/user/{userId}: Recupera todos os pedidos de um usuário.
+        POST /api/order/{orderId}/products: Adiciona um produto a um pedido.
+        PUT /api/order/{orderId}/products/{productId}/quantity/{newQuantity}: Atualiza a quantidade de um produto em um pedido.
+        DELETE /api/order/{orderId}/products/{productId}: Remove um produto de um pedido.
+        
+        Mais detalhes podem ser encontrados na documentação do Swagger.
     
 
 # 🛠️ Tecnologias utilizadas
 
-- ASP.NET Core 7.0
-- SQL Server
-- System.Data.SqlClient
-- AutoMapper
-- Newtonsoft.Json
-- Swagger
+    ASP.NET Core 7.0
+    SQL Server
+    System.Data.SqlClient
+    AutoMapper
+    Newtonsoft.Json
+    Swagger
 
 # 📖 Conclusão
 
@@ -109,14 +114,18 @@ The TechShop API has a series of routes to manage users, products, orders, produ
 
     Authentication:
         POST /api/auth/login: Logs a user in.
+
     Product Categories:
         GET /api/category: Retrieves all product categories.
+
     Order Statuses:
         GET /api/status: Retrieves all order statuses.
+
     Users:
         GET /api/users/username/{username}: Retrieves a user by username.
         POST /api/users: Creates a new user.
         PUT /api/users: Updates an existing user.
+
     Products:
         POST /api/products: Creates a new product.
         PUT /api/products/{id}: Updates an existing product.
@@ -125,6 +134,7 @@ The TechShop API has a series of routes to manage users, products, orders, produ
         GET /api/products/{id}: Retrieves a product by ID.
         GET /api/products: Retrieves all products.
         GET /api/products/category/{categoryCode}: Retrieves all products from a particular category.
+
     Orders:
         POST /api/order: Creates a new order.
         PUT /api/order/{id}: Updates an order's status.
@@ -134,6 +144,7 @@ The TechShop API has a series of routes to manage users, products, orders, produ
         POST /api/order/{orderId}/products: Adds a product to an order.
         PUT /api/order/{orderId}/products/{productId}/quantity/{newQuantity}: Updates the quantity of a product in an order.
         DELETE /api/order/{orderId}/products/{productId}: Removes a product from an order.
+
     More details can be found in the Swagger documentation.
 
 
