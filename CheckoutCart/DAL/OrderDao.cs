@@ -86,8 +86,8 @@ namespace CheckoutCart.DAL
             using var command = connection.CreateCommand();
             command.CommandText = @$"
                 SELECT COUNT(*) FROM ORDERS 
-                INNER JOIN STATUS ON ORDERS.StatusId = STATUS.Id 
-                WHERE ORDERS.UserId = @userId AND STATUS.Code = @statusCode";
+                INNER JOIN STATUSES ON ORDERS.StatusId = STATUSES.Id 
+                WHERE ORDERS.UserId = @userId AND STATUSES.Code = @statusCode";
 
             command.Parameters.AddWithValue("@userId", userId);
             command.Parameters.AddWithValue("@statusCode", (int)StatusCode.Open);

@@ -1,5 +1,6 @@
 ﻿using CheckoutCart.BLL.Interface;
 using CheckoutCart.Domain;
+using CheckoutCart.Dtos.Order;
 using CheckoutCart.Helpers.Enums;
 using CheckoutCart.Helpers.Exceptions;
 using Microsoft.AspNetCore.Http;
@@ -195,7 +196,6 @@ namespace CheckoutCart.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while processing your request." });
             }
         }
-
         /// <summary>
         /// Adds a product to an order.
         /// </summary>
@@ -215,7 +215,7 @@ namespace CheckoutCart.Controllers
         ///     }
         /// </remarks>
         [HttpPost("{orderId}/products")]
-        public async Task<IActionResult> AddProductToOrder(Guid orderId, [FromBody] ProductOrder productOrder)
+        public async Task<IActionResult> AddProductToOrder(Guid orderId, [FromBody] ProductOrderRequest productOrder)
         {
             try
             {
@@ -224,8 +224,7 @@ namespace CheckoutCart.Controllers
                     return BadRequest(new { Message = "ProductOrder should not be null" });
                 }
 
-                productOrder.OrderId = orderId;
-                var result = await _orderService.AddProductToOrderAsync(productOrder);
+                var result = await _orderService.AddProductToOrderAsync(orderId, productOrder.ProductId, productOrder.Quantity);
 
                 if (result)
                     return Ok();
@@ -244,6 +243,18 @@ namespace CheckoutCart.Controllers
             {
                 return NotFound(new { Message = ex.Message });
             }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (InvalidOrderStatusException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while processing your request." });
@@ -258,19 +269,16 @@ namespace CheckoutCart.Controllers
         /// <param name="newQuantity">The new quantity.</param>
         /// <returns>No content.</returns>
         /// <response code="200">If the product quantity is successfully updated.</response>
-        /// <response code="400">If the new quantity is not greater than zero, or if unable to update the product quantity in the order.</response>
-        /// <response code="404">If the product is not found.</response>
+        /// <response code="400">If the new quantity is not greater than zero, or if unable to update the product quantity in the order, or if the order is not open.</response>
+        /// <response code="404">If the product or order is not found.</response>
         /// <response code="500">If there is an internal server error.</response>
         /// <remarks>
         /// Sample request:
         ///
-        ///     PUT /Order/{orderId}/products/{productId}
-        ///     {
-        ///        "newQuantity": 2
-        ///     }
+        ///     PUT /Order/{orderId}/products/{productId}/quantity/{newQuantity}
         /// </remarks>
-        [HttpPut("{orderId}/products/{productId}")]
-        public async Task<IActionResult> UpdateProductQuantityInOrder(Guid orderId, Guid productId, [FromBody] int newQuantity)
+        [HttpPut("{orderId}/products/{productId}/quantity/{newQuantity}")]
+        public async Task<IActionResult> UpdateProductQuantityInOrder(Guid orderId, Guid productId, int newQuantity)
         {
             try
             {
@@ -285,7 +293,15 @@ namespace CheckoutCart.Controllers
             {
                 return NotFound(new { Message = ex.Message });
             }
+            catch (OrderNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
             catch (ArgumentOutOfRangeException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (InvalidOrderStatusException ex)
             {
                 return BadRequest(new { Message = ex.Message });
             }
@@ -302,8 +318,8 @@ namespace CheckoutCart.Controllers
         /// <param name="productId">The id of the product.</param>
         /// <returns>No content.</returns>
         /// <response code="200">If the product is successfully removed from the order.</response>
-        /// <response code="400">If unable to remove the product from the order.</response>
-        /// <response code="404">If the product is not found.</response>
+        /// <response code="400">If the order is not open, or if unable to remove the product from the order.</response>
+        /// <response code="404">If the product or the order is not found.</response>
         /// <response code="500">If there is an internal server error.</response>
         /// <remarks>
         /// Sample request:
@@ -325,6 +341,14 @@ namespace CheckoutCart.Controllers
             catch (ProductNotFoundException ex)
             {
                 return NotFound(new { Message = ex.Message });
+            }
+            catch (OrderNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+            catch (InvalidOrderStatusException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
             }
             catch (Exception)
             {

@@ -149,7 +149,7 @@ namespace CheckoutCart.BLL
         private async Task<IList<ProductOrderItemResponse>> MappingProductsResponse(IEnumerable<ProductOrder> items)
         {
             var itemsOrderResponse = new List<ProductOrderItemResponse>();
-            if (items.Count() < 1)
+            if (items.Count() > 0)
             {
                 foreach (var item in items)
                 {
@@ -162,24 +162,37 @@ namespace CheckoutCart.BLL
             return itemsOrderResponse;
         }
 
-        public async Task<bool> AddProductToOrderAsync(ProductOrder productOrder)
+        public async Task<bool> AddProductToOrderAsync(Guid orderId, Guid productId, int quantity)
         {
-            if (productOrder == null)
+          
+            if (quantity <= 0)
             {
-                throw new ArgumentNullException(nameof(productOrder));
+                throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity must be greater than zero");
             }
 
-            var product = await _productDao.GetProductByIdAsync(productOrder.ProductId);
+            var product = await _productDao.GetProductByIdAsync(productId);
             if (product == null)
             {
-                throw new ProductNotFoundException($"Product with Id {productOrder.ProductId} not found");
+                throw new ProductNotFoundException($"Product with Id {productId} not found");
             }
 
-            var order = await _orderDao.GetOrderByIdAsync(productOrder.OrderId);
+            if (!product.IsActive)
+            {
+                throw new ArgumentException("The product is not active");
+            }
+
+            var order = await _orderDao.GetOrderByIdAsync(orderId);
             if (order == null)
             {
-                throw new OrderNotFoundException($"Order with Id {productOrder.OrderId} not found");
+                throw new OrderNotFoundException($"Order with Id {orderId} not found");
             }
+            var status = await _statusDao.GetByIdAsync(order.StatusId);
+            if (status.Code != (int)StatusCode.Open)
+            {
+                throw new InvalidOrderStatusException("Order is not open, cannot add product");
+            }
+
+            var productOrder = new ProductOrder { OrderId = orderId, ProductId = productId, Quantity = quantity, PriceAtOrder = product.Price };
 
             return await _productOrderDao.AddProductToOrderAsync(productOrder);
         }
@@ -202,6 +215,18 @@ namespace CheckoutCart.BLL
 
         public async Task<bool> RemoveProductFromOrderAsync(Guid orderId, Guid productId)
         {
+            var order = await _orderDao.GetOrderByIdAsync(orderId);
+            if (order == null)
+            {
+                throw new OrderNotFoundException($"Order with Id {orderId} not found");
+            }
+
+            var status = await _statusDao.GetByIdAsync(order.StatusId);
+            if (status.Code != (int)StatusCode.Open)
+            {
+                throw new InvalidOrderStatusException("Order is not open, cannot remove product");
+            }
+
             var productOrder = await _productOrderDao.GetProductOrderAsync(orderId, productId);
             if (productOrder == null)
             {
