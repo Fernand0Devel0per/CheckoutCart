@@ -2,7 +2,6 @@
 using CheckoutCart.BLL.Interface;
 using CheckoutCart.DAL.Interface;
 using CheckoutCart.Dtos.Category;
-using CheckoutCart.Dtos.Status;
 
 namespace CheckoutCart.BLL
 {

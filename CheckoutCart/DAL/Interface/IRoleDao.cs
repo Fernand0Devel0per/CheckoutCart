@@ -1,5 +1,4 @@
 ﻿using CheckoutCart.Domain;
-using System.Threading.Tasks;
 
 namespace CheckoutCart.DAL.Interface
 {

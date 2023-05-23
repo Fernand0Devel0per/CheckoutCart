@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CheckoutCart.BLL.Interface;
-using CheckoutCart.DAL;
 using CheckoutCart.DAL.Interface;
 using CheckoutCart.Domain;
 using CheckoutCart.Dtos.Common;
@@ -199,6 +198,18 @@ namespace CheckoutCart.BLL
 
         public async Task<bool> UpdateProductQuantityInOrderAsync(Guid orderId, Guid productId, int newQuantity)
         {
+            var order = await _orderDao.GetOrderByIdAsync(orderId);
+            if (order == null)
+            {
+                throw new OrderNotFoundException($"Order with Id {orderId} not found");
+            }
+
+            var status = await _statusDao.GetByIdAsync(order.StatusId);
+            if (status.Code != (int)StatusCode.Open)
+            {
+                throw new InvalidOrderStatusException("Order is not open, cannot update product quantity");
+            }
+
             var productOrder = await _productOrderDao.GetProductOrderAsync(orderId, productId);
             if (productOrder == null)
             {

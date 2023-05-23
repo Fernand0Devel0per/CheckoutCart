@@ -1,11 +1,10 @@
 ﻿using CheckoutCart.BLL.Interface;
-using CheckoutCart.Domain;
 using CheckoutCart.Dtos.Order;
 using CheckoutCart.Helpers.Enums;
 using CheckoutCart.Helpers.Exceptions;
-using Microsoft.AspNetCore.Http;
+using CheckoutCart.Helpers.Security.Contants;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace CheckoutCart.Controllers
 {
@@ -37,6 +36,7 @@ namespace CheckoutCart.Controllers
         ///        "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
         ///     }
         /// </remarks>
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateAsync(Guid userId)
         {
@@ -77,6 +77,7 @@ namespace CheckoutCart.Controllers
         ///        "code": 2
         ///     }
         /// </remarks>
+        [Authorize(Roles = $"{Roles.Employer},{Roles.Admin}")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateStatusAsync(Guid id, StatusCode code)
         {
@@ -120,6 +121,7 @@ namespace CheckoutCart.Controllers
         ///
         ///     GET /Order/{id}
         /// </remarks>
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrderByIdAsync(Guid id)
         {
@@ -151,6 +153,7 @@ namespace CheckoutCart.Controllers
         ///
         ///     GET /Order/{id}/products
         /// </remarks>
+        [Authorize]
         [HttpGet("{id}/products")]
         public async Task<IActionResult> GetOrderByIdWithProductsAsync(Guid id)
         {
@@ -183,6 +186,7 @@ namespace CheckoutCart.Controllers
         ///
         ///     GET /Order/user/{userId}?page=1&amp;pageSize=10
         /// </remarks>
+        [Authorize]
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetOrdersByUserAsync(Guid userId, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
@@ -214,6 +218,7 @@ namespace CheckoutCart.Controllers
         ///        "quantity": 1
         ///     }
         /// </remarks>
+        [Authorize]
         [HttpPost("{orderId}/products")]
         public async Task<IActionResult> AddProductToOrder(Guid orderId, [FromBody] ProductOrderRequest productOrder)
         {
@@ -277,6 +282,7 @@ namespace CheckoutCart.Controllers
         ///
         ///     PUT /Order/{orderId}/products/{productId}/quantity/{newQuantity}
         /// </remarks>
+        [Authorize]
         [HttpPut("{orderId}/products/{productId}/quantity/{newQuantity}")]
         public async Task<IActionResult> UpdateProductQuantityInOrder(Guid orderId, Guid productId, int newQuantity)
         {
@@ -326,6 +332,7 @@ namespace CheckoutCart.Controllers
         ///
         ///     DELETE /Order/{orderId}/products/{productId}
         /// </remarks>
+        [Authorize]
         [HttpDelete("{orderId}/products/{productId}")]
         public async Task<IActionResult> RemoveProductFromOrder(Guid orderId, Guid productId)
         {

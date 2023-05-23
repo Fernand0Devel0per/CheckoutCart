@@ -7,11 +7,9 @@ using CheckoutCart.DAL.Interface;
 using CheckoutCart.Domain;
 using CheckoutCart.Helpers.AutoMapper;
 using CheckoutCart.Helpers.Security;
-using CheckoutCart.Helpers.Security.Contants;
 using CheckoutCart.Helpers.Security.Interfaces;
 using CheckoutCart.Helpers.Swagger;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,7 +50,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "GateNewsApi V1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "CheckOutCart V1");
         c.RoutePrefix = "swagger";
     });
 }

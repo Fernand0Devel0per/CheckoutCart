@@ -1,6 +1,4 @@
 ﻿using CheckoutCart.BLL.Interface;
-using CheckoutCart.Domain;
-using CheckoutCart.Dtos.Common;
 using CheckoutCart.Dtos.Product;
 using CheckoutCart.Helpers.Enums;
 using CheckoutCart.Helpers.Exceptions;

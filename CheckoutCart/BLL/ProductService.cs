@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CheckoutCart.BLL.Interface;
-using CheckoutCart.DAL;
 using CheckoutCart.DAL.Interface;
 using CheckoutCart.Domain;
 using CheckoutCart.Dtos.Common;

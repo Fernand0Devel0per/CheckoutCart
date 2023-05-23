@@ -2,13 +2,8 @@
 using CheckoutCart.Domain;
 using CheckoutCart.Dtos.Common;
 using CheckoutCart.Helpers.Data;
-using CheckoutCart.Helpers.Enums;
 using CheckoutCart.Helpers.Exceptions;
-using CheckoutCart.Helpers.Security.Contants;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace CheckoutCart.DAL
 {

@@ -1,5 +1,4 @@
-﻿using CheckoutCart.Domain;
-using CheckoutCart.Dtos.Common;
+﻿using CheckoutCart.Dtos.Common;
 using CheckoutCart.Dtos.Order;
 using CheckoutCart.Helpers.Enums;
 

@@ -1,8 +1,6 @@
-﻿using CheckoutCart.BLL;
-using CheckoutCart.BLL.Interface;
+﻿using CheckoutCart.BLL.Interface;
 using CheckoutCart.Helpers.Security.Contants;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CheckoutCart.Controllers
