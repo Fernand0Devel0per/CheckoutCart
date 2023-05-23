@@ -1,6 +1,6 @@
-﻿using CheckoutCart.Dtos.User;
+﻿using TechShop.Dtos.User;
 
-namespace CheckoutCart.BBL.Interface
+namespace TechShop.BBL.Interface
 {
     public interface IAuthenticationService
     {

@@ -1,10 +1,10 @@
-﻿using CheckoutCart.DAL.Interface;
-using CheckoutCart.Domain;
-using CheckoutCart.Helpers.Data;
-using CheckoutCart.Helpers.Enums;
+﻿using TechShop.DAL.Interface;
+using TechShop.Domain;
+using TechShop.Helpers.Data;
+using TechShop.Helpers.Enums;
 using System.Data.SqlClient;
 
-namespace CheckoutCart.DAL
+namespace TechShop.DAL
 {
     public class StatusDao : IStatusDao
     {

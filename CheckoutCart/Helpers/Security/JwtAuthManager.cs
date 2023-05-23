@@ -1,13 +1,13 @@
-﻿using CheckoutCart.Domain;
-using CheckoutCart.Dtos.User;
-using CheckoutCart.Helpers.Security.Interfaces;
+﻿using TechShop.Domain;
+using TechShop.Dtos.User;
+using TechShop.Helpers.Security.Interfaces;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace CheckoutCart.Helpers.Security
+namespace TechShop.Helpers.Security
 {
     public class JwtAuthManager : IJwtAuthManager
     {

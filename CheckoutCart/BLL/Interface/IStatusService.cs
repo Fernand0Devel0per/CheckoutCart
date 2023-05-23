@@ -1,6 +1,6 @@
-﻿using CheckoutCart.Dtos.Status;
+﻿using TechShop.Dtos.Status;
 
-namespace CheckoutCart.BLL.Interface
+namespace TechShop.BLL.Interface
 {
     public interface IStatusService
     {

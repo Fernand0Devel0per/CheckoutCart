@@ -1,7 +1,7 @@
-﻿using CheckoutCart.Domain;
-using CheckoutCart.Dtos.Common;
+﻿using TechShop.Domain;
+using TechShop.Dtos.Common;
 
-namespace CheckoutCart.DAL.Interface
+namespace TechShop.DAL.Interface
 {
     public interface IProductDao
     {

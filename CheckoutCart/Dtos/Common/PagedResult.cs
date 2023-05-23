@@ -1,6 +1,6 @@
-﻿using CheckoutCart.Domain;
+﻿using TechShop.Domain;
 
-namespace CheckoutCart.Dtos.Common
+namespace TechShop.Dtos.Common
 {
     public class PagedResult<T>
     {

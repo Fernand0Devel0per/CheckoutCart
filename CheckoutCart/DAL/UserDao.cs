@@ -1,10 +1,10 @@
-﻿using CheckoutCart.DAL.Interface;
-using CheckoutCart.Domain;
-using CheckoutCart.Helpers.Data;
+﻿using TechShop.DAL.Interface;
+using TechShop.Domain;
+using TechShop.Helpers.Data;
 using Microsoft.AspNetCore.Identity;
 using System.Data.SqlClient;
 
-namespace CheckoutCart.DAL
+namespace TechShop.DAL
 {
     public class UserDao : IUserDao
     {

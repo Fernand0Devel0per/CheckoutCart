@@ -1,4 +1,4 @@
-﻿namespace CheckoutCart.Dtos.Product
+﻿namespace TechShop.Dtos.Product
 {
     public class ProductResponse
     {

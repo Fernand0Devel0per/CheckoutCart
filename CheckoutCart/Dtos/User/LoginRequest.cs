@@ -1,4 +1,4 @@
-﻿namespace CheckoutCart.Dtos.User
+﻿namespace TechShop.Dtos.User
 {
     public class LoginRequest
     {

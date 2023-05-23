@@ -1,8 +1,8 @@
-﻿using CheckoutCart.Dtos.Common;
-using CheckoutCart.Dtos.Order;
-using CheckoutCart.Helpers.Enums;
+﻿using TechShop.Dtos.Common;
+using TechShop.Dtos.Order;
+using TechShop.Helpers.Enums;
 
-namespace CheckoutCart.BLL.Interface
+namespace TechShop.BLL.Interface
 {
     public interface IOrderService
     {

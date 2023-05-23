@@ -1,6 +1,6 @@
-﻿using CheckoutCart.Helpers.Enums;
+﻿using TechShop.Helpers.Enums;
 
-namespace CheckoutCart.Dtos.Product
+namespace TechShop.Dtos.Product
 {
     public class ProductCreateRequest
     {

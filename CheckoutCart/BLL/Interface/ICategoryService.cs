@@ -1,6 +1,6 @@
-﻿using CheckoutCart.Dtos.Category;
+﻿using TechShop.Dtos.Category;
 
-namespace CheckoutCart.BLL.Interface
+namespace TechShop.BLL.Interface
 {
     public interface ICategoryService
     {

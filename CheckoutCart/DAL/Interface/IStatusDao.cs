@@ -1,7 +1,7 @@
-﻿using CheckoutCart.Domain;
-using CheckoutCart.Helpers.Enums;
+﻿using TechShop.Domain;
+using TechShop.Helpers.Enums;
 
-namespace CheckoutCart.DAL.Interface
+namespace TechShop.DAL.Interface
 {
     public interface IStatusDao
     {

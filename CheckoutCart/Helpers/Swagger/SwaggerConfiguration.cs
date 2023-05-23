@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using System.Reflection;
 
-namespace CheckoutCart.Helpers.Swagger
+namespace TechShop.Helpers.Swagger
 {
     public static class SwaggerConfiguration
     {
@@ -9,7 +9,7 @@ namespace CheckoutCart.Helpers.Swagger
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CheckOutCart", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TechShop", Version = "v1" });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

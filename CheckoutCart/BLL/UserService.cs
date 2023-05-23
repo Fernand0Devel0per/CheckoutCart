@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using CheckoutCart.BBL.Interface;
-using CheckoutCart.DAL;
-using CheckoutCart.DAL.Interface;
-using CheckoutCart.Domain;
-using CheckoutCart.Dtos.User;
-using CheckoutCart.Helpers.Exceptions;
-using CheckoutCart.Helpers.Extensions;
+using TechShop.BBL.Interface;
+using TechShop.DAL;
+using TechShop.DAL.Interface;
+using TechShop.Domain;
+using TechShop.Dtos.User;
+using TechShop.Helpers.Exceptions;
+using TechShop.Helpers.Extensions;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Authentication;
 
-namespace CheckoutCart.BBL
+namespace TechShop.BBL
 {
     public class UserService : IUserService
     {

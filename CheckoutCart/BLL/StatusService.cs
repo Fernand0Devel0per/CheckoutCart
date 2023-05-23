@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using CheckoutCart.BLL.Interface;
-using CheckoutCart.DAL.Interface;
-using CheckoutCart.Dtos.Status;
+using TechShop.BLL.Interface;
+using TechShop.DAL.Interface;
+using TechShop.Dtos.Status;
 
-namespace CheckoutCart.BLL
+namespace TechShop.BLL
 {
     public class StatusService : IStatusService
     {

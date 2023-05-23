@@ -1,13 +1,13 @@
-﻿using CheckoutCart.BBL.Interface;
-using CheckoutCart.Dtos.User;
-using CheckoutCart.Helpers.Exceptions;
-using CheckoutCart.Helpers.Security.Contants;
+﻿using TechShop.BBL.Interface;
+using TechShop.Dtos.User;
+using TechShop.Helpers.Exceptions;
+using TechShop.Helpers.Security.Contants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Authentication;
 using System.Security.Claims;
 
-namespace CheckoutCart.Controllers
+namespace TechShop.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

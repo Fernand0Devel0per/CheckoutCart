@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace CheckoutCart.Helpers.Exceptions
+namespace TechShop.Helpers.Exceptions
 {
     [Serializable]
     public class OpenOrderExistsException : Exception

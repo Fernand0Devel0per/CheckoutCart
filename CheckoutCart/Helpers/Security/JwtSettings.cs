@@ -1,4 +1,4 @@
-﻿namespace CheckoutCart.Helpers.Security
+﻿namespace TechShop.Helpers.Security
 {
     public class JwtSettings
     {

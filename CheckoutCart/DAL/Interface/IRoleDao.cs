@@ -1,6 +1,6 @@
-﻿using CheckoutCart.Domain;
+﻿using TechShop.Domain;
 
-namespace CheckoutCart.DAL.Interface
+namespace TechShop.DAL.Interface
 {
     public interface IRoleDao
     {

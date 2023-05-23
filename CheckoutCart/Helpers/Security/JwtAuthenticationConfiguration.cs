@@ -1,10 +1,10 @@
-﻿using CheckoutCart.Helpers.Security.Contants;
+﻿using TechShop.Helpers.Security.Contants;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace CheckoutCart.Helpers.Security
+namespace TechShop.Helpers.Security
 {
     public static class JwtAuthenticationConfiguration
     {

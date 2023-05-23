@@ -1,14 +1,14 @@
-using CheckoutCart.BBL;
-using CheckoutCart.BBL.Interface;
-using CheckoutCart.BLL;
-using CheckoutCart.BLL.Interface;
-using CheckoutCart.DAL;
-using CheckoutCart.DAL.Interface;
-using CheckoutCart.Domain;
-using CheckoutCart.Helpers.AutoMapper;
-using CheckoutCart.Helpers.Security;
-using CheckoutCart.Helpers.Security.Interfaces;
-using CheckoutCart.Helpers.Swagger;
+using TechShop.BBL;
+using TechShop.BBL.Interface;
+using TechShop.BLL;
+using TechShop.BLL.Interface;
+using TechShop.DAL;
+using TechShop.DAL.Interface;
+using TechShop.Domain;
+using TechShop.Helpers.AutoMapper;
+using TechShop.Helpers.Security;
+using TechShop.Helpers.Security.Interfaces;
+using TechShop.Helpers.Swagger;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -50,7 +50,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "CheckOutCart V1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "TechShop V1");
         c.RoutePrefix = "swagger";
     });
 }

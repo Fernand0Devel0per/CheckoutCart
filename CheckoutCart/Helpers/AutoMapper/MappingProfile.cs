@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using CheckoutCart.Domain;
-using CheckoutCart.Dtos.Category;
-using CheckoutCart.Dtos.Order;
-using CheckoutCart.Dtos.Product;
-using CheckoutCart.Dtos.Status;
-using CheckoutCart.Dtos.User;
+using TechShop.Domain;
+using TechShop.Dtos.Category;
+using TechShop.Dtos.Order;
+using TechShop.Dtos.Product;
+using TechShop.Dtos.Status;
+using TechShop.Dtos.User;
 
-namespace CheckoutCart.Helpers.AutoMapper
+namespace TechShop.Helpers.AutoMapper
 {
     public class MappingProfile : Profile
     {

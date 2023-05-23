@@ -1,4 +1,4 @@
-﻿namespace CheckoutCart.Helpers.Data
+﻿namespace TechShop.Helpers.Data
 {
     public static class ConfigurationExtensions
     {

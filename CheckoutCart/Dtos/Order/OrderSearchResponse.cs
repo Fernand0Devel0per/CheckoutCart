@@ -1,6 +1,6 @@
-﻿using CheckoutCart.Helpers.Enums;
+﻿using TechShop.Helpers.Enums;
 
-namespace CheckoutCart.Dtos.Order
+namespace TechShop.Dtos.Order
 {
     public class OrderSearchResponse
     {

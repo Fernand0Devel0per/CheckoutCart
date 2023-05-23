@@ -1,9 +1,9 @@
-﻿using CheckoutCart.BLL.Interface;
-using CheckoutCart.Helpers.Security.Contants;
+﻿using TechShop.BLL.Interface;
+using TechShop.Helpers.Security.Contants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CheckoutCart.Controllers
+namespace TechShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,4 +1,4 @@
-﻿namespace CheckoutCart.Helpers.Security.Contants
+﻿namespace TechShop.Helpers.Security.Contants
 {
     public class Roles
     {

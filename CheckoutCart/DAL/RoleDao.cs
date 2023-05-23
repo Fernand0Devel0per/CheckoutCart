@@ -1,9 +1,9 @@
-﻿using CheckoutCart.DAL.Interface;
-using CheckoutCart.Domain;
-using CheckoutCart.Helpers.Data;
+﻿using TechShop.DAL.Interface;
+using TechShop.Domain;
+using TechShop.Helpers.Data;
 using System.Data.SqlClient;
 
-namespace CheckoutCart.DAL
+namespace TechShop.DAL
 {
     public class RoleDao : IRoleDao
     {

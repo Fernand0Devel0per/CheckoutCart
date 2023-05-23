@@ -1,4 +1,4 @@
-﻿namespace CheckoutCart.Dtos.Status
+﻿namespace TechShop.Dtos.Status
 {
     public class StatusResponse
     {

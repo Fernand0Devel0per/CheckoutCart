@@ -1,12 +1,12 @@
-﻿using CheckoutCart.BBL.Interface;
-using CheckoutCart.DAL.Interface;
-using CheckoutCart.Domain;
-using CheckoutCart.Dtos.User;
-using CheckoutCart.Helpers.Security.Interfaces;
+﻿using TechShop.BBL.Interface;
+using TechShop.DAL.Interface;
+using TechShop.Domain;
+using TechShop.Dtos.User;
+using TechShop.Helpers.Security.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Authentication;
 
-namespace CheckoutCart.BBL
+namespace TechShop.BBL
 {
     public class AuthenticationService : IAuthenticationService
     {

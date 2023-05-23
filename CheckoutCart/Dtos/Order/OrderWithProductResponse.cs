@@ -1,6 +1,6 @@
-﻿using CheckoutCart.Dtos.Product;
+﻿using TechShop.Dtos.Product;
 
-namespace CheckoutCart.Dtos.Order
+namespace TechShop.Dtos.Order
 {
     public class OrderWithProductResponse
     {

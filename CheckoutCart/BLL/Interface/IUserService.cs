@@ -1,7 +1,7 @@
-﻿using CheckoutCart.Domain;
-using CheckoutCart.Dtos.User;
+﻿using TechShop.Domain;
+using TechShop.Dtos.User;
 
-namespace CheckoutCart.BBL.Interface
+namespace TechShop.BBL.Interface
 {
     public interface IUserService
     {

@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using CheckoutCart.BLL.Interface;
-using CheckoutCart.DAL.Interface;
-using CheckoutCart.Domain;
-using CheckoutCart.Dtos.Common;
-using CheckoutCart.Dtos.Product;
-using CheckoutCart.Helpers.Enums;
-using CheckoutCart.Helpers.Exceptions;
+using TechShop.BLL.Interface;
+using TechShop.DAL.Interface;
+using TechShop.Domain;
+using TechShop.Dtos.Common;
+using TechShop.Dtos.Product;
+using TechShop.Helpers.Enums;
+using TechShop.Helpers.Exceptions;
 
-namespace CheckoutCart.BLL
+namespace TechShop.BLL
 {
     public class ProductService : IProductService
     {

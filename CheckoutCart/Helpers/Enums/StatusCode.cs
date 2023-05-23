@@ -1,4 +1,4 @@
-﻿namespace CheckoutCart.Helpers.Enums
+﻿namespace TechShop.Helpers.Enums
 {
     public enum StatusCode
     {

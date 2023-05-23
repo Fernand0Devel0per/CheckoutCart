@@ -1,4 +1,4 @@
-﻿namespace CheckoutCart.Domain
+﻿namespace TechShop.Domain
 {
     public class Category
     {
